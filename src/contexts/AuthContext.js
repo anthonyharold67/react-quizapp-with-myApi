@@ -5,11 +5,14 @@ import {
   } from ".././helpers/ToastNotify";
 import axios from "axios"
 import React from "react";
+
+
 export const AuthContext = createContext()
 
 const url = "https://drf-myquizapp.herokuapp.com/"
 
 const AuthContextProvider= (props) => {
+    
     const [currentUser, setCurrentUser] = useState();
     const [myKey, setMyKey] = useState();
       
@@ -61,6 +64,7 @@ const AuthContextProvider= (props) => {
                 toastSuccessNotify("User logout successfully")
                 setCurrentUser(false)
                 setMyKey(false)
+                
                 navigate("/")
               }
               console.log(res)

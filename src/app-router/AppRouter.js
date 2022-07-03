@@ -5,6 +5,7 @@ import Register from '../pages/Register'
 import Home from '../pages/Home'
 import NavBar from '../components/Navbar'
 import { AuthContext } from '../contexts/AuthContext'
+import Quiz from '../pages/Quiz'
 
 const AppRouter = () => {
   const {myKey,currentUser} = React.useContext(AuthContext)
@@ -17,6 +18,7 @@ const AppRouter = () => {
             <Route path="/" element={<Home/>} />
               <Route path="/login" element={<Login/>} />
               <Route path="/register" element={<Register/>} />
+              <Route path="/quiz" element={<Quiz/>} />
           </Routes>
       </Router>
   

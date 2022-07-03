@@ -10,9 +10,12 @@ import Menu from '@mui/material/Menu';
 import { useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../contexts/AuthContext";
+import { QuizContext } from '../contexts/QuizContext';
 
 export default function NavBar() {
   const {currentUser,logOut} = React.useContext(AuthContext);
+  const {setQuiz,setQuizQuestions}= React.useContext(QuizContext)
+    
   const navigate = useNavigate()
   // const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -28,6 +31,8 @@ export default function NavBar() {
       navigate('/register')
     }else if (e.target.innerText === 'Logout'){
       logOut(navigate)
+      setQuiz([])
+      setQuizQuestions([])
     }
 
   };

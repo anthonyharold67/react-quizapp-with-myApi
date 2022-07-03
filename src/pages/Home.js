@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { QuizContext } from '../contexts/QuizContext'
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const {getQuiz, getQuizQuestions, category, quiz} = useContext(QuizContext)
+  const navigate = useNavigate()
+
   return (
     <div style={{
       backgroundImage: 'url(https://source.unsplash.com/random)',
@@ -11,30 +16,31 @@ const Home = () => {
       backgroundPosition: "center",
       // backgroundAttachment: "fixed",
       height: "100vh",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
+      
     }}>
-          <h1 style={{
-            fontFamily: "fantasy",
-            fontSize: "5rem",
-            color: "white",
-            textAlign: "center",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginTop: "50px",
-            marginBottom: "50px",
-            marginLeft: "50px",
-            marginRight: "50px",
-            backgroundColor: "rgba(0,0,0,0.5)",
-            borderRadius: "50px",
-            padding: "10px",
-            border: "1px solid white",
-            boxShadow: "0px 0px 10px black",
-            letterSpacing: "5px"
-          }}
-          >Hello! Welcome to Anthony Harold's Quiz App</h1>
+      <h1>Welcome to the Quiz App</h1>
+      
+         <div > {category?.map((item) => {
+            return (
+              <button onClick={() => getQuiz(`${item.name}`)} key={item.id}>
+                <h1>{item.name}</h1>
+               </button>
+            )
+          }
+          )}</div>
+          {quiz !== [] && <h1>Quizs</h1>}
+          <div style={{display:"block"}}>
+          {quiz?.map((item,index) => {
+            return (
+              <button onClick={() => getQuizQuestions(`${item.category.name}/${item.title}`,navigate)} key={index}>
+                <h1>{item.title}</h1>
+               </button>
+            )
+          })
+          }
+          </div>
+
+
       </div>
   )
 }
