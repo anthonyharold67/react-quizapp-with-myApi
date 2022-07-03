@@ -10,13 +10,10 @@ export const AuthContext = createContext()
 const url = "https://drf-myquizapp.herokuapp.com/"
 
 const AuthContextProvider= (props) => {
-    
+    const [currentUser, setCurrentUser] = useState();
+    const [myKey, setMyKey] = useState();
       
-      // export const [auth, setAuth] = React.useState(true);
-      const [currentUser, setCurrentUser] = useState();
-      const [myKey, setMyKey] = useState();
-      
-      const createUser = async (email,password,navigate,firstName,lastName,userName) => {
+    const createUser = async (email,password,navigate,firstName,lastName,userName) => {
           try {
             const res = await axios.post(`${url}users/register/`, {
               username: userName,
@@ -28,17 +25,14 @@ const AuthContextProvider= (props) => {
               });
               console.log(res)
             toastSuccessNotify("User registered successfully.Please login to continue")
-            navigate("/login")
-            
+            navigate("/login")   
           }
           catch(error) {
-          //  alert(error.message)
             toastErrorNotify(error.message)
           }
-        
         }
       
-        const signIn =async (email,password,userName,navigate)=>{
+    const signIn =async (email,password,userName,navigate)=>{
           try {     
             const res = await axios.post(`${url}users/auth/login/`, {
               username: userName,
@@ -52,42 +46,29 @@ const AuthContextProvider= (props) => {
                 setMyKey(myToken)
                 setCurrentUser(res.data.user.username)
                 console.log(res.data.user.username);
-                console.log("asda987636");
-                
                 toastSuccessNotify("User logged in successfully")
                 navigate("/")
             }  
-            
           }
           catch(error) {
-          //  alert(error.message)
             toastErrorNotify(error.message)
-          }
-          
+          }  
         }
-       const logOut = async (navigate) => {
+    const logOut = async (navigate) => {
           try {
               const res = await axios.post(`${url}users/auth/logout/`)
               if (res.status === 200) {
                 toastSuccessNotify("User logout successfully")
                 setCurrentUser(false)
+                setMyKey(false)
                 navigate("/")
               }
               console.log(res)
           } catch (error) {
             toastErrorNotify(error.message)
-          }
-              
-          
-          
-          
+          } 
       };
       
-    
-    // useEffect(() => {
-    //     userObserver(setCurrentUser)
-    // },[])
-    // console.log(currentUser)
     let value={
         currentUser,
         createUser,
