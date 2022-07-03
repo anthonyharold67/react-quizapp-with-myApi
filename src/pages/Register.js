@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
-import { createUser } from "../helpers/database";
+import { AuthContext } from "../contexts/AuthContext";
 
 
 function Copyright(props) {
@@ -32,6 +32,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Register() {
+  const {createUser} = React.useContext(AuthContext);
   const navigate = useNavigate()
   const [firstName,setFirstName]=useState()
   const [lastName,setLastName]=useState()
