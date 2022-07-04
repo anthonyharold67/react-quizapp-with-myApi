@@ -1,14 +1,15 @@
 import React, { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { QuizContext } from '../contexts/QuizContext';
 import "./quizPage.css";
 
 const Quiz = () => {
+    const navigate=useNavigate();
     const [showResults, setShowResults] = useState(false);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState(0);
     const {quizQuestions} = useContext(QuizContext);
     const optionClicked = (isCorrect) => {
-        // Increment the score
         if (isCorrect) {
           setScore(score + 1);
         }
@@ -20,7 +21,6 @@ const Quiz = () => {
         }
       };
     
-      /* Resets the game back to default */
     const restartGame = () => {
         setScore(0);
         setCurrentQuestion(0);
@@ -34,7 +34,6 @@ const Quiz = () => {
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
             backgroundSize: 'cover',
             backgroundPosition: "center",
-            // backgroundAttachment: "fixed",
             height: "100vh",
           }}>
       <h1>USA Quiz 🇺🇸</h1>
@@ -47,6 +46,8 @@ const Quiz = () => {
             {(score / quizQuestions.length) * 100}%)
           </h2>
           <button onClick={() => restartGame()}>Restart game</button>
+          <button onClick={()=>navigate("/")}>Go Home</button>
+          
         </div>
       ) : (
         <div className="question-card">
