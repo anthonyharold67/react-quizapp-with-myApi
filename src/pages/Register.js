@@ -41,7 +41,12 @@ export default function Register() {
   const [userName,setUserName]=useState()
   const handleSubmit = (event) => {
     event.preventDefault();
-    createUser(email,password,navigate,firstName,lastName,userName)
+    if (email && password && userName && firstName && lastName) {
+      createUser(email,password,navigate,firstName,lastName,userName)
+    }else{
+      alert("Please fill all the fields")
+    }
+    
 
   };
 
