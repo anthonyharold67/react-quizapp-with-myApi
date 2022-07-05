@@ -39,12 +39,10 @@ export default function Login() {
   const [userName,setUserName]=useState()
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(email && password && userName){
-      signIn(email,password,navigate,userName)
-    }
-    else{
-      alert("Please fill all the fields")
-    }
+ 
+    signIn(email,password,navigate,userName)
+
+
     
   };
   

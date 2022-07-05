@@ -35,7 +35,7 @@ const AuthContextProvider= (props) => {
           }
         }
       
-    const signIn =async (email,password,userName,navigate)=>{
+    const signIn =async (email,password,navigate,userName)=>{
           try {     
             const res = await axios.post(`${url}users/auth/login/`, {
               username: userName,
@@ -45,13 +45,13 @@ const AuthContextProvider= (props) => {
             const myToken = await res.data.key  
             console.log(res.status)
             if(myToken){
-                console.log(res)
                 setMyKey(myToken)
                 setCurrentUser(res.data.user.username)
                 console.log(res.data.user.username);
-                toastSuccessNotify("User logged in successfully")
-                navigate("/")
-            }  
+                toastSuccessNotify("User logged in successfully") 
+                navigate("/") 
+            } 
+            
           }
           catch(error) {
             toastErrorNotify(error.message)
