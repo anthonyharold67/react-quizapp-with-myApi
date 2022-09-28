@@ -27,8 +27,12 @@ const AuthContextProvider= (props) => {
               password2: password
               });
               console.log(res)
-            toastSuccessNotify("User registered successfully.Please login to continue")
-            navigate("/login")   
+              if(res.data.token){
+                setMyKey(res.data.token)
+                setCurrentUser(res.data.username)
+                toastSuccessNotify("User registered successfully.Please login to continue")
+                navigate("/") 
+            } 
           }
           catch(error) {
             toastErrorNotify(error.message)
