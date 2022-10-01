@@ -51,7 +51,7 @@ const AuthContextProvider= (props) => {
             if(myToken){
                 setMyKey(myToken)
                 setCurrentUser(res.data.user.username)
-                console.log(res.data.user.username);
+                console.log(res.data);
                 toastSuccessNotify("User logged in successfully") 
                 navigate("/") 
             } 
