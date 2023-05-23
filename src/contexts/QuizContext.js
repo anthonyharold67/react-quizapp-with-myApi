@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export const QuizContext = createContext()
 
-const url = "https://drf-myquizapp.herokuapp.com/api/"
+const url = "https://sekunev.pythonanywhere.com/api/";
 const QuizContextProvider = (props) => {
     const {myKey}= useContext(AuthContext)
     const [quiz,setQuiz] = useState([])

@@ -9,7 +9,7 @@ import React from "react";
 
 export const AuthContext = createContext()
 
-const url = "https://drf-myquizapp.herokuapp.com/"
+const url = "https://sekunev.pythonanywhere.com/"
 
 const AuthContextProvider= (props) => {
     
